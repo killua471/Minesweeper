@@ -147,6 +147,9 @@ public class MSButton
             if (countMines(r, c) >0) {
               setLabel(countMines(r, c));
             }
+            if(countMines(r,c)==0){
+              setLabel("");
+            }
           }
         }
       
