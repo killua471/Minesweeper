@@ -201,7 +201,7 @@ public class MSButton
 
       //rect(0,0,height,width);
       //text("you lose",height/2,width/2);
-    } else if (countMines(myRow, myCol) >0) {
+    } if (countMines(myRow, myCol) >0) {
       setLabel(countMines(myRow, myCol));
     } else {
 
