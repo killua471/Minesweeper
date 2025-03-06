@@ -133,6 +133,7 @@ public class MSButton
         for (int c=myCol-1; c<myCol+2; c++) {
           if (isValid(r, c)) {
             buttons[r][c].setClicked(true);
+          
           }
         }
       }
@@ -140,12 +141,30 @@ public class MSButton
       //buttons[myRow][myCol].setClicked(true);
 
       setMines();
+
+      for (int r=myRow-1; r<myRow+2; r++) {
+        for (int c=myCol-1; c<myCol+2; c++) {
+            if (countMines(myRow, myCol) >0) {
+              setLabel(countMines(myRow, myCol));
+            }
+          }
+        }
+      
+
+      if (isValid(myRow, myCol-1) && buttons[myRow][myCol-1].clicked==false) {
+        buttons[myRow][myCol-1].mousePressed();
+      }
+      if (isValid(myRow, myCol+1) && buttons[myRow][myCol+1].clicked==false) {
+        buttons[myRow][myCol+1].mousePressed();
+      }
       if (isValid(myRow-1, myCol) && buttons[myRow-1][myCol].clicked==false) {
         buttons[myRow-1][myCol].mousePressed();
       }
       if (isValid(myRow+1, myCol) && buttons[myRow+1][myCol].clicked==false) {
         buttons[myRow+1][myCol].mousePressed();
       }
+
+
       if (isValid(myRow+1, myCol+1) && buttons[myRow+1][myCol+1].clicked==false) {
         buttons[myRow+1][myCol+1].mousePressed();
       }
@@ -200,6 +219,8 @@ public class MSButton
       if (isValid(myRow+1, myCol) && buttons[myRow+1][myCol].clicked==false) {
         buttons[myRow+1][myCol].mousePressed();
       }
+
+
       if (isValid(myRow+1, myCol+1) && buttons[myRow+1][myCol+1].clicked==false) {
         buttons[myRow+1][myCol+1].mousePressed();
       }
