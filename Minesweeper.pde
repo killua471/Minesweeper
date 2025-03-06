@@ -144,8 +144,8 @@ public class MSButton
 
       for (int r=myRow-1; r<myRow+2; r++) {
         for (int c=myCol-1; c<myCol+2; c++) {
-            if (countMines(myRow, myCol) >0) {
-              setLabel(countMines(myRow, myCol));
+            if (countMines(r, c) >0) {
+              setLabel(countMines(r, c));
             }
           }
         }
