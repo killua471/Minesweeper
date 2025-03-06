@@ -182,7 +182,7 @@ public class MSButton
      /*
       for (int r=myRow-1; r<myRow+2; r++) {
         for (int c=myCol-1; c<myCol+2; c++) {
-          if (countMines(r, c) ==0 && isValid(r,c) && buttons[r][c].clicked==true) {
+          if (countMines(r, c) ==0 && isValid(r,c) && buttons[r][c].clicked==true &&r!=myRow&&c!=myCol) {
             buttons[r][c].mousePressed();
           }
         }
@@ -202,7 +202,7 @@ public class MSButton
 
       //rect(0,0,height,width);
       //text("you lose",height/2,width/2);
-    } if (countMines(myRow, myCol) >0) {
+    } else if (countMines(myRow, myCol) >0) {
       setLabel(countMines(myRow, myCol));
     } else {
 
