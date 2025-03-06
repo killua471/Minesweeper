@@ -150,7 +150,7 @@ public class MSButton
           }
         }
       
-/*
+
       if (isValid(myRow, myCol-1) && buttons[myRow][myCol-1].clicked==true) {
         buttons[myRow][myCol-1].mousePressed();
       }
@@ -177,9 +177,9 @@ public class MSButton
       if (isValid(myRow-1, myCol+1) && buttons[myRow-1][myCol+1].clicked==true) {
         buttons[myRow-1][myCol+1].mousePressed();
       }
-*/
+
       //buttons[myRow][myCol].mousePressed();
-     
+     /*
       for (int r=myRow-1; r<myRow+2; r++) {
         for (int c=myCol-1; c<myCol+2; c++) {
           if (countMines(r, c) ==0 && isValid(r,c) && buttons[r][c].clicked==true) {
@@ -187,7 +187,7 @@ public class MSButton
           }
         }
       }
-      
+      */
     } else if (mouseButton == RIGHT) {
       if (clicked == false) {
         if (flagged ==true) {
