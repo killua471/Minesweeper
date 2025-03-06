@@ -128,7 +128,7 @@ public class MSButton
     //your code here
 
     if (mines.size()==0) {
-      /*
+      
       for (int r=myRow-1; r<myRow+2; r++) {
         for (int c=myCol-1; c<myCol+2; c++) {
           if (isValid(r, c)) {
@@ -136,20 +136,20 @@ public class MSButton
           }
         }
       }
-      */
-      buttons[myRow][myCol].setClicked(true);
+      
+      //buttons[myRow][myCol].setClicked(true);
 
       setMines();
-      buttons[myRow][myCol].mousePressed();
-     /*
+      //buttons[myRow][myCol].mousePressed();
+     
       for (int r=myRow-1; r<myRow+2; r++) {
         for (int c=myCol-1; c<myCol+2; c++) {
           if (countMines(r, c) >0) {
-            setLabel(countMines(r, c));
+            buttons[myRow][myCol].mousePressed();
           }
         }
       }
-      */
+      
     } else if (mouseButton == RIGHT) {
       if (clicked == false) {
         if (flagged ==true) {
