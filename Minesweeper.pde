@@ -168,7 +168,7 @@ public class MSButton
       if (isValid(myRow+1, myCol+1) && buttons[myRow+1][myCol+1].clicked==false) {
         buttons[myRow+1][myCol+1].mousePressed();
       }
-      if (isValid(myRow-1, myCol-1) && buttons[myRow+1][myCol].clicked==false) {
+      if (isValid(myRow-1, myCol-1) && buttons[myRow-1][myCol-1].clicked==false) {
         buttons[myRow-1][myCol-1].mousePressed();
       }
       if (isValid(myRow+1, myCol-1) && buttons[myRow+1][myCol-1].clicked==false) {
@@ -224,7 +224,7 @@ public class MSButton
       if (isValid(myRow+1, myCol+1) && buttons[myRow+1][myCol+1].clicked==false) {
         buttons[myRow+1][myCol+1].mousePressed();
       }
-      if (isValid(myRow-1, myCol-1) && buttons[myRow+1][myCol].clicked==false) {
+      if (isValid(myRow-1, myCol-1) && buttons[myRow-1][myCol-1].clicked==false) {
         buttons[myRow-1][myCol-1].mousePressed();
       }
       if (isValid(myRow+1, myCol-1) && buttons[myRow+1][myCol-1].clicked==false) {
