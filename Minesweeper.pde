@@ -37,6 +37,15 @@ public void setMines()
 public void draw ()
 {
   background( 0 );
+
+    for(int r=0; r<NUM_ROWS; r++){
+      for(int c=0; c<NUM_ROWS; c++){
+        if(buttons[r][c].isClicked()==true && countMines(r,c)==0){
+          buttons[r][c].setLabel("");
+        }
+      }
+    }
+
   if (isWon() == true)
     displayWinningMessage();
 }
@@ -239,6 +248,15 @@ public class MSButton
       }
 
     }
+/*
+    for(int r=0; r<NUM_ROWS; r++){
+      for(int c=0; c<NUM_ROWS; c++){
+        if(buttons[r][c].isClicked()==true && countMines(r,c)==0){
+          buttons[r][c].setLabel("");
+        }
+      }
+    }
+*/
   }
   public void draw () 
   {    
