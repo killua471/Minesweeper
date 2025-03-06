@@ -145,7 +145,7 @@ public class MSButton
       for (int r=myRow-1; r<myRow+2; r++) {
         for (int c=myCol-1; c<myCol+2; c++) {
           if (countMines(r, c) >0) {
-            buttons[myRow][myCol].mousePressed();
+            buttons[r][c].mousePressed();
           }
         }
       }
@@ -170,7 +170,7 @@ public class MSButton
       for (int r=myRow-1; r<myRow+2; r++) {
         for (int c=myCol-1; c<myCol+2; c++) {
           if (countMines(r, c) >0) {
-            buttons[myRow][myCol].mousePressed();
+            buttons[r][c].mousePressed();
           }
         }
       }
