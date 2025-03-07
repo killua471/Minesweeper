@@ -71,7 +71,7 @@ public void displayLosingMessage()
   for (int r=0; r<NUM_ROWS; r++) {
     for (int c=0; c<NUM_COLS; c++) {
       if (mines.contains(buttons[r][c])) {
-        buttons[r][c].setClicked(true);
+        buttons[r][c].fill(255, 0, 0);
       }
     }
   }
@@ -267,7 +267,7 @@ public class MSButton
     else if (clicked)
       fill( 200 );
     else 
-    fill( 100 );
+    fill(0,255,0 );
 
     rect(x, y, width, height);
     fill(0);
