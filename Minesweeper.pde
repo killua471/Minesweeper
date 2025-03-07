@@ -4,6 +4,8 @@ public int NUM_COLS = 20;
 private MSButton[][] buttons; //2d array of minesweeper buttons
 private ArrayList <MSButton> mines = new ArrayList <MSButton>(); //ArrayList of just the minesweeper buttons that are mined
 
+
+
 void setup ()
 {
   size(600, 600);
@@ -71,8 +73,10 @@ public void displayLosingMessage()
   for (int r=0; r<NUM_ROWS; r++) {
     for (int c=0; c<NUM_COLS; c++) {
       if (mines.contains(buttons[r][c])) {
-        buttons[r][c].fill(255, 0, 0);
+        buttons[r][c].setClicked(true);
+        buttons[r][c].setFlagged(false);
       }
+      buttons[r][c].setCanClick(false);
     }
   }
 }
@@ -111,9 +115,10 @@ public int countMines(int row, int col)
 }
 public class MSButton
 {
+  
   private int myRow, myCol;
   private float x, y, width, height;
-  private boolean clicked, flagged;
+  private boolean clicked, flagged, canClick;
   private String myLabel;
 
   public MSButton ( int row, int col )
@@ -126,13 +131,14 @@ public class MSButton
     y = myRow*height;
     myLabel = "";
     flagged = clicked = false;
+    canClick=true;
     Interactive.add( this ); // register it with the manager
   }
 
   // called by manager
   public void mousePressed () 
   {
-    if (mouseButton!=RIGHT)
+    if (mouseButton!=RIGHT &&canClick==true)
       clicked = true;
     //your code here
 
@@ -163,32 +169,7 @@ public class MSButton
         }
       
 
-      if (isValid(myRow, myCol-1) && buttons[myRow][myCol-1].clicked==true) {
-        buttons[myRow][myCol-1].mousePressed();
-      }
-      if (isValid(myRow, myCol+1) && buttons[myRow][myCol+1].clicked==true) {
-        buttons[myRow][myCol+1].mousePressed();
-      }
-      if (isValid(myRow-1, myCol) && buttons[myRow-1][myCol].clicked==true) {
-        buttons[myRow-1][myCol].mousePressed();
-      }
-      if (isValid(myRow+1, myCol) && buttons[myRow+1][myCol].clicked==true) {
-        buttons[myRow+1][myCol].mousePressed();
-      }
-
-
-      if (isValid(myRow+1, myCol+1) && buttons[myRow+1][myCol+1].clicked==true) {
-        buttons[myRow+1][myCol+1].mousePressed();
-      }
-      if (isValid(myRow-1, myCol-1) && buttons[myRow-1][myCol-1].clicked==true) {
-        buttons[myRow-1][myCol-1].mousePressed();
-      }
-      if (isValid(myRow+1, myCol-1) && buttons[myRow+1][myCol-1].clicked==true) {
-        buttons[myRow+1][myCol-1].mousePressed();
-      }
-      if (isValid(myRow-1, myCol+1) && buttons[myRow-1][myCol+1].clicked==true) {
-        buttons[myRow-1][myCol+1].mousePressed();
-      }
+      openSpace(true);
 
       //buttons[myRow][myCol].mousePressed();
      /*
@@ -204,48 +185,24 @@ public class MSButton
       if (clicked == false) {
         if (flagged ==true) {
           flagged =false;
+          canClick=true;
         } else {
           flagged =true;
+          canClick=false;
         }
       }
-    } else if (mines.contains(this)) {
+    } else if (mines.contains(this)&&canClick==true) {
       setLabel("you lose");
       displayLosingMessage();
 
       //rect(0,0,height,width);
       //text("you lose",height/2,width/2);
-    } else if (countMines(myRow, myCol) >0) {
+    } else if (countMines(myRow, myCol) >0&&canClick==true) {
       setLabel(countMines(myRow, myCol));
-    } else {
+    } else if(canClick==true){
+      openSpace(false);
 
 
-      if (isValid(myRow, myCol-1) && buttons[myRow][myCol-1].clicked==false) {
-        buttons[myRow][myCol-1].mousePressed();
-      }
-      if (isValid(myRow, myCol+1) && buttons[myRow][myCol+1].clicked==false) {
-        buttons[myRow][myCol+1].mousePressed();
-      }
-
-      if (isValid(myRow-1, myCol) && buttons[myRow-1][myCol].clicked==false) {
-        buttons[myRow-1][myCol].mousePressed();
-      }
-      if (isValid(myRow+1, myCol) && buttons[myRow+1][myCol].clicked==false) {
-        buttons[myRow+1][myCol].mousePressed();
-      }
-
-
-      if (isValid(myRow+1, myCol+1) && buttons[myRow+1][myCol+1].clicked==false) {
-        buttons[myRow+1][myCol+1].mousePressed();
-      }
-      if (isValid(myRow-1, myCol-1) && buttons[myRow-1][myCol-1].clicked==false) {
-        buttons[myRow-1][myCol-1].mousePressed();
-      }
-      if (isValid(myRow+1, myCol-1) && buttons[myRow+1][myCol-1].clicked==false) {
-        buttons[myRow+1][myCol-1].mousePressed();
-      }
-      if (isValid(myRow-1, myCol+1) && buttons[myRow-1][myCol+1].clicked==false) {
-        buttons[myRow-1][myCol+1].mousePressed();
-      }
 
     }
 /*
@@ -288,10 +245,49 @@ public class MSButton
   {
     return flagged;
   }
+  public void fills(int r, int g, int b){
+    fill(r,g,b);
+  }
   public boolean isClicked() {
     return clicked;
   }
   public void setClicked(boolean b) {
     clicked =b;
   }
+  public void setFlagged(boolean b){
+    flagged =b;
+  }
+  public void setCanClick(boolean b){
+    canClick=b;
+  }
+  public void openSpace(boolean b){
+          if (isValid(myRow, myCol-1) && buttons[myRow][myCol-1].clicked==b) {
+        buttons[myRow][myCol-1].mousePressed();
+      }
+      if (isValid(myRow, myCol+1) && buttons[myRow][myCol+1].clicked==b) {
+        buttons[myRow][myCol+1].mousePressed();
+      }
+
+      if (isValid(myRow-1, myCol) && buttons[myRow-1][myCol].clicked==b) {
+        buttons[myRow-1][myCol].mousePressed();
+      }
+      if (isValid(myRow+1, myCol) && buttons[myRow+1][myCol].clicked==b) {
+        buttons[myRow+1][myCol].mousePressed();
+      }
+
+
+      if (isValid(myRow+1, myCol+1) && buttons[myRow+1][myCol+1].clicked==b) {
+        buttons[myRow+1][myCol+1].mousePressed();
+      }
+      if (isValid(myRow-1, myCol-1) && buttons[myRow-1][myCol-1].clicked==b) {
+        buttons[myRow-1][myCol-1].mousePressed();
+      }
+      if (isValid(myRow+1, myCol-1) && buttons[myRow+1][myCol-1].clicked==b) {
+        buttons[myRow+1][myCol-1].mousePressed();
+      }
+      if (isValid(myRow-1, myCol+1) && buttons[myRow-1][myCol+1].clicked==b) {
+        buttons[myRow-1][myCol+1].mousePressed();
+      }
+  }
+  
 }
