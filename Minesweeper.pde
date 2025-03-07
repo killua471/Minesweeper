@@ -24,7 +24,7 @@ public void setMines()
 {
   //your code
   int countMines=0;
-  while(countMines!=60){
+  while(countMines!=70){
     int r= (int)(Math.random()*NUM_ROWS);
     int c= (int)(Math.random()*NUM_COLS);
     if (!mines.contains(buttons[r][c]) && buttons[r][c].isClicked() == false) {
