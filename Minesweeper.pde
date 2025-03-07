@@ -4,11 +4,24 @@ public int NUM_COLS = 20;
 private MSButton[][] buttons; //2d array of minesweeper buttons
 private ArrayList <MSButton> mines = new ArrayList <MSButton>(); //ArrayList of just the minesweeper buttons that are mined
 
-
+public void keyPressed(){
+  if(key == 'r'){
+    for(int i = 0; i<70; i++){
+      mines.remove(0);
+    }
+    for (int r=0; r<NUM_ROWS; r++) {
+      for (int c=0; c<NUM_COLS; c++) {
+        buttons[r][c].setClicked(false);
+        buttons[r][c].setLabel("");
+        buttons[r][c].setFlagged(false);
+      }
+    }
+  }
+}
 
 void setup ()
 {
-  size(600, 600);
+  size(600, 650);
   textAlign(CENTER, CENTER);
 
   // make the manager
@@ -35,11 +48,23 @@ public void setMines()
     }
   }
 }
-
+public int countFlagged(){
+  int count =0;
+  for (int r=0; r<NUM_ROWS; r++) {
+    for (int c=0; c<NUM_COLS; c++) {
+      if(buttons[r][c].isFlagged()==true){
+        count++;
+      }
+    }
+  }
+  
+  return mines.size()-count;
+}
 public void draw ()
 {
   background( 0 );
-
+  fill(255);
+    text("mines left: " + countFlagged(),300,625);
     for(int r=0; r<NUM_ROWS; r++){
       for(int c=0; c<NUM_ROWS; c++){
         if(buttons[r][c].isClicked()==true && countMines(r,c)==0){
@@ -48,8 +73,14 @@ public void draw ()
       }
     }
 
-  if (isWon() == true)
+  if (isWon() == true){
     displayWinningMessage();
+      for (int r=0; r<NUM_ROWS; r++) {
+        for (int c=0; c<NUM_COLS; c++) {
+          buttons[r][c].setCanClick(false);
+        }
+      }
+  }
 }
 public boolean isWon()
 {
